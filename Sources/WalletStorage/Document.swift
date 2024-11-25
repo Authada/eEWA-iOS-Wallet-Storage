@@ -64,10 +64,20 @@ public struct Document {
 		case .cbor:
 			guard let iss = IssuerSigned(data: [UInt8](data)), let privateKeyType, let privateKey, let dpk = try? IssueRequest(id: id, privateKeyType: privateKeyType, keyData: privateKey).toCoseKeyPrivate() else { return nil }
 			return ((id, iss), (id, dpk))
-		case .sjwt:
-			fatalError("Format \(docDataType) not implemented")
+		case .sdjwt:
+            return nil
 		case .deferred:
 			return nil
 		}
 	}
+    
+    /// get SDJWT data and private key from document
+    public func getSdjwtData() -> Data? {
+        switch docDataType {
+        case .sdjwt:
+            return data
+        default:
+            return nil
+        }
+    }
 }

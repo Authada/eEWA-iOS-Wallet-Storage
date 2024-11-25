@@ -44,7 +44,7 @@ public enum SavedKeyChainDataType{
 /// ``deferred``: Deferred issuance
 public enum DocDataType: String  {
 	case cbor = "cbor"
-	case sjwt = "sjwt"
+	case sdjwt = "sjwt"
 	case signupResponseJson = "srjs"
 	case deferred = "defr"
 }
